@@ -1,0 +1,126 @@
+/* faq */
+
+.faq__container {
+    justify-content: space-between;
+    padding: 120px 0;
+}
+
+.faq__container-image {
+    max-width: 450px;
+    width: 100%;
+}
+
+.faq__container-image img {
+    width: 100%;
+}
+
+/* - - */
+
+
+/* faq__container-box-content */
+
+.faq__container-box {
+    width: 100%;
+    max-width: 600px;
+}
+
+.faq__container-box-intro {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.faq__container-box-content {
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #f9f9f9;
+}
+
+/* faq-item */
+
+.faq-item {
+    border-bottom: 1px solid #ddd;
+}
+
+.faq-item:last-of-type {
+    border-bottom: none;
+}
+
+.faq-item-button {
+    background: #fff;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 15px 35px 15px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    transition: background 0.3s, color 0.8s;
+}
+
+.faq-item-button:hover {
+    background: #e0e0e0;
+}
+
+.faq-item-button .arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-left: 2px solid #101999;
+    border-bottom: 2px solid #101999;
+    transform: rotate(-45deg) translateY(-50%);
+    transition: transform 0.3s;
+}
+
+.faq-item-button.active .arrow {
+    transform: rotate(135deg) translateY(20%);
+}
+
+.faq-item-content {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 15px;
+    background: #fff;
+    color: #585858;
+    transition: max-height 0.4s ease-out;
+}
+
+.faq-item-content p {
+    margin: 0;
+    padding: 15px 0;
+}
+
+.faq-item-button.active + .faq-item-content {
+    max-height: 200px;
+}
+
+/* - - - - -*/
+
+/* - - - - - - - - - - - - - -*/
+
+
+@media (max-width:768px) {
+
+    .faq {
+        padding: 50px 40px ;
+        transition: all .5s;
+    }
+
+    .faq__container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .faq__container-box {
+        max-width: 1200px;
+        width: 100%;
+    }
+    
+}
