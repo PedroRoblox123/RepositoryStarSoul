@@ -41,6 +41,7 @@ import './styles.css';
 import React from 'react';
 
 function GenericTable({ data, columns, onDelete, onEditClick }) {
+
   return (
     <table className='generic-table'>
       <thead className='generic-thead'>
