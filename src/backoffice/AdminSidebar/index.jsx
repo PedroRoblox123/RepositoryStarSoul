@@ -39,7 +39,7 @@ const AdminSidebar = () => {
                     <img src="../src/assets/icons/starsoul-lettermark.svg" className='adminbar__nav-img' alt="" />
                     <ul className='adminbar__nav-list'>
                     <li className='adminbar__nav-item'> <Link to='/admin/dashboard' className='adminbar__nav-link'> <img src="../src/assets/images/admin/icon-dashboard.svg" alt="Dashboard" /> Dashboard </Link> </li>
-                    <li className='adminbar__nav-item'> <Link to='/admin/management' className='adminbar__nav-link'> <img src="../src/assets/images/admin/icon-people.svg" alt="Gerenciamento de Usuários" /> Gerenciamento de Usuários </Link> </li>
+                    <li className='adminbar__nav-item'> <Link to='/admin/management' className='adminbar__nav-link'> <img src="../src/assets/images/admin/icon-people.svg" alt="Gerenciamento de Usuários" /> Gerenciamento de Acessos </Link> </li>
                     <li className='adminbar__nav-item'> <Link to='/admin/management/content' className='adminbar__nav-link'> <img src="../src/assets/images/admin/icon-folder-open.svg" alt="Genrenciamento de Conteúdos" /> Gerenciamento de Conteúdos </Link> </li>
 
                                         
