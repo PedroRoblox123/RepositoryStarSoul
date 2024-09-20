@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import Container from '../../shared/Container'
-import Content from '../../shared/Content'
-import Banner from '../../components/Banner';
+import Container from '../../components/common/Container'
+import Content from '../../components/common/Content'
+import Banner from '../../components/common/Banner';
 import './styles.css'
 
 function AboutUs() {
@@ -30,7 +30,7 @@ function AboutUs() {
             <Container className='about-us__container-whoweare'>
                 <Content className='about-us__container-whoweare-content'>
                     <div className='about-us__container-whoweare-content-image'>
-                        <img src="../public/images-aboutus/about--about-us.svg" className='about-us__container-whoweare-content-image--img'/>
+                        <img src="./src/assets/images/user/images-aboutus/about--about-us.svg" className='about-us__container-whoweare-content-image--img'/>
                     </div>
 
                     <div className='about-us__container-whoweare-content-box' id='QuemSomosNos'>

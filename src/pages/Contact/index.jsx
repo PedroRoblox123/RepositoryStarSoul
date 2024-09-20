@@ -1,7 +1,7 @@
-import Banner from '../../components/Banner'
-import Container from '../../shared/Container'
-import Content from '../../shared/Content'
-import Button from '../../components/Button';
+import Banner from '../../components/common/Banner'
+import Container from '../../components/common/Container'
+import Content from '../../components/common/Content'
+import Button from '../../components/common/Button';
 import './styles.css'
 
 
@@ -27,10 +27,10 @@ function Contact() {
                             <Button type='submit'>Enviar</Button>
                         </form>
                         <div className='contact__section-area-content-contactus-iconsapp'>
-                        <a href="https://www.facebook.com/" className="iconsapp__link"> <img src="../public/images-contact/icon-facebook.svg" className="contact__section-area-content-contactus-icon-img" alt="Facebook" /> </a>
-                        <a href="https://www.instagram.com/" className="iconsapp__link"> <img src="../public/images-contact/icon-instagram.svg" className="iconsapp__link-img" alt="Instagram" /> </a>
-                        <a href="https://br.linkedin.com/" className="iconsapp__link"> <img src="../public/images-contact/icon-linkedin.svg" className="iconsapp__link-img" alt="LinkedIn" /> </a>
-                        <a href="https://twitter.com/" className="iconsapp__link"> <img src="../public/images-contact/icon-x.svg" className="iconsapp__link-img" alt="X" /> </a>
+                            <a href="https://www.facebook.com/" className="iconsapp__link"> <img src="./src/assets/images/user/images-contact/icon-facebook.svg" className="contact__section-area-content-contactus-icon-img" alt="Facebook" /> </a>
+                            <a href="https://www.instagram.com/" className="iconsapp__link"> <img src="./src/assets/images/user/images-contact/icon-instagram.svg" className="iconsapp__link-img" alt="Instagram" /> </a>
+                            <a href="https://br.linkedin.com/" className="iconsapp__link"> <img src="./src/assets/images/user/images-contact/icon-linkedin.svg" className="iconsapp__link-img" alt="LinkedIn" /> </a>
+                            <a href="https://twitter.com/" className="iconsapp__link"> <img src="./src/assets/images/user/images-contact/icon-x.svg" className="iconsapp__link-img" alt="X" /> </a>
                         </div>
                     </div>
                 </Content>
@@ -44,12 +44,12 @@ function Contact() {
                             <h1 className='contact__section-location-area-box-title'>Brazil, São Paulo</h1>
 
                             <div className='contact__section-location-area-box-locates'>
-                                <img src='../public/images-shared/icon-home.svg' className="contact__section-location-area-box-locates--img" alt="Address" />
+                                <img src='./src/assets/images/public/icon-home.svg' className="contact__section-location-area-box-locates--img" alt="Address" />
                                 <p className="contact__section-location-area-box-locates--text">R.Interna Grupo Bandeirante 138 - Jardim Belval | Barueri - São Paulo</p>
                             </div>
 
                             <div className='contact__section-location-area-box-locates'>
-                                <img src='../public/images-shared/icon-telephone-fill.svg' className="contact__section-location-area-box-locates--img" alt="Phone" />
+                                <img src='./src/assets/images/public/icon-telephone-fill.svg' className="contact__section-location-area-box-locates--img" alt="Phone" />
                                 <p className="contact__section-location-area-box-locates--text">(11) 4002-8922</p>
                             </div>
                         </div>
@@ -58,12 +58,12 @@ function Contact() {
                             <h1 className='contact__section-location-area-box-title'>Brazil, Rio de Janeiro</h1>
                             
                             <div className='contact__section-location-area-box-locates'>
-                                <img src='../public/images-shared/icon-home.svg' className="contact__section-location-area-box-locates--img" alt="Address" />
+                                <img src='./src/assets/images/public/icon-home.svg' className="contact__section-location-area-box-locates--img" alt="Address" />
                                 <p className="contact__section-location-area-box-locates--text">Av. Atlântica 2000 - Copacabana | Rio de Janeiro - RJ</p>
                             </div>
 
                             <div className='contact__section-location-area-box-locates'>
-                                <img src='../public/images-shared/icon-telephone-fill.svg' className="contact__section-location-area-box-locates--img" alt="Phone" />
+                                <img src='./src/assets/images/public/icon-telephone-fill.svg' className="contact__section-location-area-box-locates--img" alt="Phone" />
                                 <p className="contact__section-location-area-box-locates--text">(21) 4002-5678</p>
                             </div>
                         </div>
@@ -72,12 +72,12 @@ function Contact() {
                             <h1 className='contact__section-location-area-box-title'>Brazil, Belo Horizonte</h1>
                                 
                             <div className='contact__section-location-area-box-locates'>
-                                <img src='../public/images-shared/icon-home.svg' className="contact__section-location-area-box-locates--img" alt="Address" />
+                                <img src='./src/assets/images/public/icon-home.svg' className="contact__section-location-area-box-locates--img" alt="Address" />
                                 <p className="contact__section-location-area-box-locates--text">Praça Sete de Setembro 100 - Centro | Belo Horizonte - MG</p>
                             </div>
 
                             <div className='contact__section-location-area-box-locates'>
-                                <img src='../public/images-shared/icon-telephone-fill.svg' className="contact__section-location-area-box-locates--img" alt="Phone" />
+                                <img src='./src/assets/images/public/icon-telephone-fill.svg' className="contact__section-location-area-box-locates--img" alt="Phone" />
                                 <p className="contact__section-location-area-box-locates--text">(31) 3003-4567</p>
                             </div>
                         </div>

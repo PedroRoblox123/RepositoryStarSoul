@@ -1,0 +1,57 @@
+.th-style {
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.generic-td {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.generic-table {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+}
+
+.generic-tr {
+    white-space: nowrap;
+}
+
+.generic-cad > td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.generic-button-delete,
+.generic-button-edit {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.3);
+    padding: 8px 15px;
+    font-size: 1rem;
+}
+
+.generic-button-delete {
+    background-color: #dc3545 ;
+}
+
+.generic-button-edit {
+    background-color: #007BFF ;
+}
+
+
+/* @media (max-width: 1280px) {
+
+    .generic-cad {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+} */

@@ -3,25 +3,29 @@ import ReactDOM from 'react-dom/client'
 import './styles/global.css'
 
 
-/* Router */
+/* User Routers */
 import { createBrowserRouter , RouterProvider } from 'react-router-dom'
-import App from './App'
+import User from './User.jsx'
 import Admin from './Admin.jsx'
 import Home from './pages/Home'
 import AboutUs from './pages/AboutUs'
 import Contact from './pages/Contact'
-import FAQ from './pages/FAQ/index.jsx'
-import Erro from './pages/Erro/index.jsx'
-import PoliticasTermo from './pages/PoliticasTermos/index.jsx'
-import HomeAdmin from './pages-adimin/Home/index.jsx'
-import Login from './pages-adimin/Login/index.jsx'
+import FAQ from './pages/FAQ'
+import PrivacyPoliciesAndTermsOfUse from './pages/Privacy-Policies-And-Terms-Of-Use'
+import Erro404 from './pages/Erro404'
+
+/* Admin Routers */
+import LoginAdmin from './backoffice/Login'
+import Dashboard from './backoffice/Dashboard'
+import Management from './backoffice/Management'
+import ContentManagement  from './backoffice/ContentManagement'
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
-    errorElement: <Erro />,
+    element: <User />,
+    errorElement: <Erro404 />,
     children: [
       {
         path: "/",
@@ -41,24 +45,36 @@ const router = createBrowserRouter([
       },
       {
         path: "politicasdeprivacidadeetermosdeuso",
-        element: <PoliticasTermo />
-      },
-      {
-        path: 'loginadmin',
-        element: <Login />}
+        element: <PrivacyPoliciesAndTermsOfUse />
+      }
     ]
   },
 
   {
     path: '/admin',
     element: <Admin />,
-    errorElement: <Erro />,
+    errorElement: <Erro404 />,
     children: [
       {
-        path: 'home',
-        element: <HomeAdmin />}
+        path: 'dashboard',
+        element: <Dashboard />,
+      },
+      {
+        path: 'management',
+        element: <Management />,
+      },
+      {
+        path: 'management/content',
+        element: <ContentManagement />,
+      }
     ],
   },
+
+  {
+    path: '/admin/login',
+    element: <LoginAdmin /> 
+  }
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

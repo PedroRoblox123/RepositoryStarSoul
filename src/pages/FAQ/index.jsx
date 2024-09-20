@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Banner from '../../components/Banner'
-import Container from '../../shared/Container'
-import Content from '../../shared/Content'
+import Banner from '../../components/common/Banner'
+import Container from '../../components/common/Container'
+import Content from '../../components/common/Content'
 import './styles.css'
 
 const FAQ = () => {
@@ -16,7 +16,7 @@ const FAQ = () => {
             
             <Container className='faq'>
                 <Content className='faq__container'>
-                    <div className='faq__container-image'> <img src="../public/images-shared/image--faq.svg" alt="FAQ" /> </div>
+                    <div className='faq__container-image'> <img src="./src/assets/images/public/image--faq.svg" alt="FAQ" /> </div>
                     <div className='faq__container-box'>
                         <h1 className='faq__container-box-intro'>Perguntas e respostas frequentes</h1>
                         <div className='faq__container-box-content'>

@@ -1,0 +1,48 @@
+.generic-form {
+    display: flex;
+    align-items: end;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+}
+
+
+.generic-label {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    font-size: 1rem;
+}
+
+
+.generic-input {
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    background-color: #d6deea;
+    padding: 10px 5px;
+    width: 330px;
+    box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.5);
+    font-size: 1rem;
+}
+
+
+.generic-button {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background-color: #3f4d63;
+    color: white;
+    box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.3);
+    padding: 8px 15px;
+    font-size: 1rem;
+}
+
+.disabled-field {
+    background-color: #f0f0f0; /* Cor de fundo mais clara */
+    color: #a0a0a0; /* Cor do texto mais clara */
+    cursor: not-allowed; /* Cursor em forma de proibição */
+  }
+
+/* ... */
+
