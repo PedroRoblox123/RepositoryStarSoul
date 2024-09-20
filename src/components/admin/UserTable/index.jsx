@@ -7,7 +7,7 @@ const userColumns = [
   { label: 'Nome', accessor: 'nome' },
   { label: 'Email', accessor: 'email' },
   { label: 'Senha', accessor: 'senha' },
-  { label: 'Status', accessor: 'status' },
+  { label: 'Status', accessor: 'codStatus' },
 ];
 
 function UserTable() {

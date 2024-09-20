@@ -233,10 +233,10 @@ const Header = () => {
                     </form> */}
 
                     <div className="header__social-midias">
-                        <a href="https://www.facebook.com/" className="header__social-midia-icon"> <img src="./src/assets/images/public/icon-facebook.svg" className="footer__social-midia-icon-img--facebook" alt="Facebook" /> </a>
-                        <a href="https://www.instagram.com/" className="header__social-midia-icon"> <img src="./src/assets/images/public/icon-instagram.svg" className="footer__social-midia-icon-img--instagram" alt="Instagram" /> </a>
-                        <a href="https://br.linkedin.com/" className="header__social-midia-icon"> <img src="./src/assets/images/public/icon-linkedin.svg" className="footer__social-midia-icon-img--linkedin" alt="LinkedIn" /> </a>
-                        <a href="https://twitter.com/" className="header__social-midia-icon"> <img src="./src/assets/images/public/icon-x.svg" className="footer__social-midia-icon-img--x" alt="X" /> </a>
+                        <a href="https://www.facebook.com/" className="header__social-midia-icon"> <img src="./src/assets/images/public/icon-facebook.svg" className="header__social-midia-icon-img--facebook" alt="Facebook" /> </a>
+                        <a href="https://www.instagram.com/" className="header__social-midia-icon"> <img src="./src/assets/images/public/icon-instagram.svg" className="header__social-midia-icon-img--instagram" alt="Instagram" /> </a>
+                        <a href="https://br.linkedin.com/" className="header__social-midia-icon"> <img src="./src/assets/images/public/icon-linkedin.svg" className="header__social-midia-icon-img--linkedin" alt="LinkedIn" /> </a>
+                        <a href="https://twitter.com/" className="header__social-midia-icon"> <img src="./src/assets/images/public/icon-x.svg" className="header__social-midia-icon-img--x" alt="X" /> </a>
                     </div>
 
                     {/* <div className="researcher" onClick={handleResearcherClick}>

@@ -224,9 +224,27 @@
 
 .header__social-midia-icon {
     display: flex;
-    max-width: 25px;
-    min-width: 20px;
+    max-width: 30px; /* Aumentei o tamanho máximo para melhorar a visualização */
+    min-width: 20px; /* Aumentei o tamanho mínimo para equilibrar */
+    transition: filter 0.3s ease, transform 0.3s ease;
 }
+
+.header__social-midia-icon img {
+    width: 100%; /* Garante que a imagem ocupe o espaço do ícone */
+    filter: grayscale(100%); /* Começa com a imagem em preto e branco */
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.header__social-midia-icon:hover img {
+    filter: grayscale(0%); /* Remove o preto e branco ao passar o mouse */
+    transform: scale(1.2); /* Aumenta o ícone um pouco mais visivelmente */
+}
+
+.header__social-midia-icon:hover {
+    transform: rotate(8deg); /* Gira o ícone um pouco mais ao passar o mouse */
+}
+
+
 
 @media (max-width: 1080px) {
 
@@ -330,7 +348,7 @@
 .dropdown:hover > .list,
 .dropdown:hover > .list-guias {
     margin: 20px 0 0 0;
-    padding: 0 10px;
+    padding: 0 0px;
     background-color: unset;
 }
 
@@ -357,18 +375,19 @@
 
 .sub-dropdown > .sub-list > li:hover,
 .sub-dropdown > .sub-list > li:hover > a {
-    background-color: #13406949;
+    background-color: #24136949;
     color: #fff;
 }
 
 .list > li:hover {
-    background-color: #13406949;
+    background-color: #24136949;
     color: #fff;
 }
 
 .list-guias > li, .list > li > a {
     color: rgb(141, 191, 206);
 }
+
 
 .list > li:hover > a {
     color: #fff;
@@ -382,6 +401,7 @@
 .list > li {
     background-color: rgba(37, 42, 90, 0.8);
     white-space: normal;
+    border-radius: 8px;
 }
 
 /* - - - - - - - - - - - - - */
@@ -444,7 +464,7 @@
 
     #menu-toggle:checked ~ .navbar {
         left: 0;
-        background-color: #221942;
+        background-color: #1b2061;
     }
 
     .dropdown.open .list,
@@ -475,7 +495,6 @@
     .list,
     .list-guias {
         margin-top: 20px;
-        padding: 0 10px;
     }
 
     .navbar > ul > li,
@@ -490,12 +509,12 @@
 
     .navbar > ul > li:hover,
     .navbar > ul > .dropdown:hover {
-        background-color: #2e476d;
+        background-color: #34218049;
     }
     
     .dropdown.open,
     .list{
-        background-color: #221942;
+        background-color: #1b2061;
     }
 
     .dropdown > img,

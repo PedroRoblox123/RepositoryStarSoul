@@ -12,7 +12,7 @@ function Home() {
                     <div className='home__hero-content-cta'>
                         <h1 className="home__hero-content-cta-title">Baixe o app StarSoul agora mesmo</h1>
                         <p className="home__hero-content-cta-subtitle">
-                        "A StarSoul é mais do que apenas um aplicativo – é a chave para uma nova jornada de autocuidado e bem-estar. Ao baixar nosso app, você terá acesso a um universo completo de conteúdos exclusivos, cuidadosamente selecionados para ajudar a promover equilíbrio emocional e paz interior. Descubra vídeos relaxantes, exercícios guiados de meditação, músicas tranquilizantes e muito mais! Não perca a oportunidade de se conectar consigo mesmo de uma maneira profunda e significativa. Junte-se a nós e inicie sua jornada estelar rumo a uma vida mais saudável e equilibrada, agora mesmo!"
+                        A StarSoul é um aplicativo dedicado ao autocuidado e bem-estar, oferecendo conteúdos exclusivos como vídeos relaxantes, meditações guiadas e músicas tranquilizantes. Baixe o app para se conectar consigo mesmo e iniciar sua jornada rumo a uma vida mais saudável e equilibrada. Junte-se a nós e comece hoje!
                         </p>
                         <div className="home__hero-content-cta-download">
                             <a href="https://www.apple.com/br/app-store/" className='home__hero-content-cta-download-link'><img src="./src/assets/images/public/download-on-appleStore_versionWhite.svg" className='home__hero-content-cta-download-link--img' alt="Baixar na AppStore" /></a>

@@ -1,44 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, Tooltip, BarChart, Bar, ResponsiveContainer
+  LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, Tooltip, ResponsiveContainer
 } from 'recharts';
+import axios from 'axios';
 import './styles.css';
 
 function Dashboard() {
-  const [users] = useState([
-    {
-      nome: 'Rodrigo Salomão',
-      ativo: true,
-      administrador: false,
-      email: 'rodrigosalomao2001@gmail.com',
-    },
-    {
-      nome: 'Tiago Soares Moura',
-      ativo: true,
-      administrador: true,
-      email: 'tiagosoares21@gmail.com',
-    },
-  ]);
+  const [users, setUsers] = useState([]);
+  const [admins, setAdmins] = useState([]);
+  const [userGrowthData, setUserGrowthData] = useState([]);
 
-  // Contagem de usuários
+  useEffect(() => {
+    // Supondo que você tenha endpoints para buscar usuários e administradores
+    const fetchData = async () => {
+      try {
+        const userResponse = await axios.get('http://localhost:8080/usuario');
+        const adminResponse = await axios.get('http://localhost:8080/administrador');
+        setUsers(userResponse.data);
+        setAdmins(adminResponse.data);
+        setUserGrowthData(generateGrowthData(userResponse.data)); // Gerar dados de crescimento
+      } catch (error) {
+        console.error('Erro ao buscar dados:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Função para gerar dados de crescimento com base no total de usuários
+  const generateGrowthData = (users) => {
+    const growthData = [];
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
+    const initialCount = users.length; // Contagem inicial
+
+    months.forEach((month, index) => {
+      growthData.push({ name: month, users: initialCount + index * 10 }); // Incrementar o crescimento
+    });
+
+    return growthData;
+  };
+
+  // Contagem de usuários e administradores
   const totalUsuarios = users.length;
   const usuariosAtivos = users.filter(user => user.ativo).length;
-
-  // Dados para os gráficos
-  const userGrowthData = [
-    { name: 'Jan', users: 20 },
-    { name: 'Feb', users: 35 },
-    { name: 'Mar', users: 50 },
-    { name: 'Apr', users: 70 },
-    { name: 'May', users: 90 },
-  ];
-
-  const activityData = [
-    { name: 'Meditation', sessions: 30 },
-    { name: 'Yoga', sessions: 15 },
-    { name: 'Reading', sessions: 20 },
-    { name: 'Breathing', sessions: 25 },
-  ];
+  const totalAdministradores = admins.length;
 
   const pieData = [
     { name: 'Ativos', value: usuariosAtivos },
@@ -49,7 +54,6 @@ function Dashboard() {
 
   return (
     <div className="dashboard-container">
-
       <div className="dashboard-info">
         <div className="info-card">
           <h2>Total de Usuários</h2>
@@ -59,6 +63,11 @@ function Dashboard() {
         <div className="info-card">
           <h2>Usuários Ativos</h2>
           <p>{usuariosAtivos}</p>
+        </div>
+
+        <div className="info-card">
+          <h2>Total de Administradores</h2>
+          <p>{totalAdministradores}</p>
         </div>
       </div>
 
@@ -76,19 +85,6 @@ function Dashboard() {
           </ResponsiveContainer>
         </div>
 
-        {/* Sessões por Atividade */}
-        <div className="bar-chart-wrapper">
-          <h2>Sessões por Atividade</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={activityData}>
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="sessions" fill="#82ca9d" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-
         {/* Status de Usuários */}
         <div className="pie-chart-wrapper">
           <h2>Status de Usuários</h2>
@@ -101,34 +97,6 @@ function Dashboard() {
               </Pie>
               <Tooltip />
             </PieChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-
-      {/* Novo gráfico: Comportamento de usuários */}
-      <div className="charts-section">
-        <div className="line-chart-wrapper">
-          <h2>Engajamento ao longo do tempo</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={userGrowthData}>
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Line type="monotone" dataKey="users" stroke="#82ca9d" strokeWidth={2} />
-              <Line type="monotone" dataKey="users" stroke="#FF8042" strokeDasharray="5 5" />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-
-        <div className="bar-chart-wrapper">
-          <h2>Atividade por Categoria</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={activityData}>
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="sessions" fill="#8884d8" />
-            </BarChart>
           </ResponsiveContainer>
         </div>
       </div>

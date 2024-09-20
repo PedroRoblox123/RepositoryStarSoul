@@ -7,3 +7,7 @@
     font-family: "Outfit", sans-serif;
     zoom: 0.97;
 }
+
+html {
+  scroll-behavior: smooth;
+}

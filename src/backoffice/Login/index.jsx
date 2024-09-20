@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 
 const admins = [
   {
-    codAdmin: '1',
-    email: 'pedro@gmail.com',
-    senha: '1'
+    codAdmin: '115611',
+    email: 'starsoul@gmail.com',
+    senha: 'starsoul'
   }
 ];
 

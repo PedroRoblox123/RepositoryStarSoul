@@ -1,27 +1,16 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { animateScroll as scroll } from 'react-scroll';
 
 const useScrollToTop = () => {
-    const location = useLocation();
+  const location = useLocation();
 
-    useEffect(() => {
-        if (location.pathname !== '/' && location.hash) {
-            // Se houver hash, role para o elemento específico
-            const element = document.querySelector(location.hash);
-            if (element) {
-                const headerOffset = 170; // Ajuste conforme a altura do cabeçalho
-                const elementPosition = element.getBoundingClientRect().top;
-                const offsetPosition = elementPosition - headerOffset;
-                window.scrollTo({
-                    top: offsetPosition + window.pageYOffset,
-                    behavior: 'smooth'
-                });
-            }
-        } else {
-            // Se não houver hash, role para o topo
-            window.scrollTo(0, 0);
-        }
-    }, [location]);
+  useEffect(() => {
+    // Role para o topo da página quando a rota mudar
+    scroll.scrollToTop({ duration: 500, smooth: true });
+  }, [location]);
+
+  return null;
 };
 
 export default useScrollToTop;

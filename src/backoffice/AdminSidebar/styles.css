@@ -46,6 +46,31 @@
     margin-bottom: 10px;
 }
 
+.adminbar__nav-item:nth-child(n+4) {
+    background-color: #e0a260;
+    border-radius: 8px;
+}
+
+.adminbar__nav-item:nth-child(n+4):not(:last-child)::after {
+    content: "Em Desenvolvimento";
+    position: absolute;
+    top: 2px;
+    left: 41%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    color: #a11414;
+    padding: 2px 8px;
+    font-size: 15px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.adminbar__nav-item:last-child {
+    background-color: transparent; /* Remover a cor de fundo */
+    color: inherit; /* Manter a cor do texto padrão */
+}
+
+
 .adminbar__nav-link {
     display: flex;
     gap: 25px;

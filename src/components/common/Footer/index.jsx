@@ -27,8 +27,8 @@ function Footer () {
                     <div className="footer__box-content">
                         <h1 className="footer__box-content-title">SOBRE NÓS</h1>
                         <div className="footer__box-content-line"></div>
-                        <Link className='footer__box-content-link' to="/sobrenos#QuemSomosNos">Quem somos nós?</Link>
-                        <Link className='footer__box-content-link' to="/sobrenos#NossaMissaoEVisao">Nossa Missão e Visão</Link>
+                        <Link className='footer__box-content-link' to="/sobrenos">Quem somos nós?</Link>
+                        <Link className='footer__box-content-link' to="/sobrenos">Nossa Missão e Visão</Link>
                         <Link className='footer__box-content-link' to="/faq">FAQ</Link>
                     </div>
 

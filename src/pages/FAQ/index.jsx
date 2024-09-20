@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Banner from '../../components/common/Banner'
-import Container from '../../components/common/Container'
-import Content from '../../components/common/Content'
-import './styles.css'
+import Banner from '../../components/common/Banner';
+import Container from '../../components/common/Container';
+import Content from '../../components/common/Content';
+import './styles.css';
 
 const FAQ = () => {
     const [activeIndex, setActiveIndex] = useState(null);
@@ -10,13 +10,16 @@ const FAQ = () => {
     const toggleFAQ = index => {
         setActiveIndex(index === activeIndex ? null : index);
     };
+
     return (
         <main>
             <Banner>FAQ - StarSoul</Banner>
             
             <Container className='faq'>
                 <Content className='faq__container'>
-                    <div className='faq__container-image'> <img src="./src/assets/images/public/image--faq.svg" alt="FAQ" /> </div>
+                    <div className='faq__container-image'>
+                        <img src="./src/assets/images/public/image--faq.svg" alt="FAQ" />
+                    </div>
                     <div className='faq__container-box'>
                         <h1 className='faq__container-box-intro'>Perguntas e respostas frequentes</h1>
                         <div className='faq__container-box-content'>
@@ -26,7 +29,7 @@ const FAQ = () => {
                                     <span className='arrow'></span>
                                 </button>
                                 <div className='faq-item-content' style={{ maxHeight: activeIndex === 0 ? '200px' : '0' }}>
-                                    <p>A StarSoul é uma plataforma dedicada ao bem-estar mental e emocional, oferecendo meditações guiadas, artigos, exercícios e músicas para ajudar você a encontrar paz e equilíbrio em sua vida diária.</p>
+                                    <p>A StarSoul é uma plataforma dedicada ao bem-estar mental e emocional, oferecendo meditações guiadas, artigos, exercícios e músicas relaxantes para ajudar você a encontrar paz e equilíbrio em sua vida diária.</p>
                                 </div>
                             </div>
 
@@ -36,7 +39,7 @@ const FAQ = () => {
                                     <span className='arrow'></span>
                                 </button>
                                 <div className='faq-item-content' style={{ maxHeight: activeIndex === 1 ? '200px' : '0' }}>
-                                    <p>A StarSoul fornece ferramentas e recursos para ajudar a reduzir o estresse, melhorar a concentração, promover o relaxamento e apoiar a saúde mental geral. Nossas meditações guiadas e exercícios foram criados por especialistas em bem-estar.</p>
+                                    <p>A StarSoul fornece ferramentas para reduzir o estresse, melhorar a concentração e promover o relaxamento. Nossas meditações guiadas e exercícios são desenvolvidos por especialistas em bem-estar.</p>
                                 </div>
                             </div>
 
@@ -46,7 +49,7 @@ const FAQ = () => {
                                     <span className='arrow'></span>
                                 </button>
                                 <div className='faq-item-content' style={{ maxHeight: activeIndex === 2 ? '200px' : '0' }}>
-                                    <p>Baixe o aplicativo da StarSoul na App Store ou Google Play, crie uma conta gratuita e comece a explorar nossos recursos. Você pode acessar meditações, ler artigos e participar de exercícios de bem-estar.</p>
+                                    <p>Baixe o aplicativo StarSoul na App Store ou Google Play, crie uma conta gratuita e comece a explorar nossos recursos, como meditações, artigos e exercícios de bem-estar.</p>
                                 </div>
                             </div>
 
@@ -56,7 +59,7 @@ const FAQ = () => {
                                     <span className='arrow'></span>
                                 </button>
                                 <div className='faq-item-content' style={{ maxHeight: activeIndex === 3 ? '200px' : '0' }}>
-                                    <p>A StarSoul oferece uma versão gratuita com acesso limitado a conteúdos. Para desbloquear todos os recursos, você pode optar por uma assinatura premium.</p>
+                                    <p>Sim! A StarSoul é totalmente gratuita. Você terá acesso a todo o conteúdo sem qualquer necessidade de assinatura ou pagamento.</p>
                                 </div>
                             </div>
 
@@ -66,7 +69,7 @@ const FAQ = () => {
                                     <span className='arrow'></span>
                                 </button>
                                 <div className='faq-item-content' style={{ maxHeight: activeIndex === 4 ? '200px' : '0' }}>
-                                    <p>Depois de fazer login no aplicativo, navegue até a seção de meditações no menu principal. Lá, você encontrará uma variedade de meditações guiadas que pode iniciar a qualquer momento.</p>
+                                    <p>Após fazer login no aplicativo, navegue até a seção de meditações no menu principal. Lá, você encontrará uma variedade de meditações guiadas que pode começar a qualquer momento.</p>
                                 </div>
                             </div>
 
@@ -76,7 +79,7 @@ const FAQ = () => {
                                     <span className='arrow'></span>
                                 </button>
                                 <div className='faq-item-content' style={{ maxHeight: activeIndex === 5 ? '200px' : '0' }}>
-                                    <p>Oferecemos uma ampla variedade de meditações, incluindo meditações de atenção plena, relaxamento, foco, sono e muito mais. Cada meditação é projetada para atender diferentes necessidades e preferências.</p>
+                                    <p>Oferecemos uma variedade de meditações, como atenção plena, relaxamento, foco, sono e muito mais, todas adaptadas para atender diferentes necessidades.</p>
                                 </div>
                             </div>
 
@@ -86,7 +89,7 @@ const FAQ = () => {
                                     <span className='arrow'></span>
                                 </button>
                                 <div className='faq-item-content' style={{ maxHeight: activeIndex === 6 ? '200px' : '0' }}>
-                                    <p>As meditações nA StarSoul variam de 5 a 30 minutos, permitindo que você escolha uma meditação que se ajuste ao seu tempo disponível e necessidade.</p>
+                                    <p>As meditações variam de 5 a 30 minutos, permitindo que você escolha a duração que melhor se adapta ao seu tempo e necessidade.</p>
                                 </div>
                             </div>
 
@@ -96,7 +99,7 @@ const FAQ = () => {
                                     <span className='arrow'></span>
                                 </button>
                                 <div className='faq-item-content' style={{ maxHeight: activeIndex === 7 ? '200px' : '0' }}>
-                                    <p>Sim, os assinantes premium podem baixar meditações para ouvir offline. Basta selecionar a meditação desejada e escolher a opção de download.</p>
+                                    <p>Atualmente, a StarSoul funciona apenas online, mas estamos trabalhando em recursos futuros que permitirão o uso offline.</p>
                                 </div>
                             </div>
 
@@ -106,37 +109,27 @@ const FAQ = () => {
                                     <span className='arrow'></span>
                                 </button>
                                 <div className='faq-item-content' style={{ maxHeight: activeIndex === 8 ? '200px' : '0' }}>
-                                    <p>Primeiro, certifique-se de que você está usando a versão mais recente do aplicativo. Se o problema persistir, entre em contato com nossa equipe de suporte através do email suporte@starsoul.com ou pelo nosso formulário de contato no site.</p>
+                                    <p>Verifique se está utilizando a versão mais recente do aplicativo. Se o problema persistir, entre em contato com o suporte via suporte@starsoul.com.</p>
                                 </div>
                             </div>
 
                             <div className='faq-item'>
                                 <button className={`faq-item-button ${activeIndex === 9 ? 'active' : ''}`} onClick={() => toggleFAQ(9)}>
-                                    Como faço para cancelar minha assinatura?
+                                    Como a StarSoul protege minha privacidade?
                                     <span className='arrow'></span>
                                 </button>
                                 <div className='faq-item-content' style={{ maxHeight: activeIndex === 9 ? '200px' : '0' }}>
-                                    <p>Você pode cancelar sua assinatura a qualquer momento através das configurações de sua conta no aplicativo. Se precisar de assistência, nossa equipe de suporte está disponível para ajudar.</p>
+                                    <p>Levamos sua privacidade a sério. Utilizamos criptografia para proteger seus dados pessoais e garantimos a segurança de suas informações.</p>
                                 </div>
                             </div>
 
                             <div className='faq-item'>
                                 <button className={`faq-item-button ${activeIndex === 10 ? 'active' : ''}`} onClick={() => toggleFAQ(10)}>
-                                    Como a StarSoul protege minha privacidade?
-                                    <span className='arrow'></span>
-                                </button>
-                                <div className='faq-item-content' style={{ maxHeight: activeIndex === 10 ? '200px' : '0' }}>
-                                    <p>Levamos sua privacidade muito a sério. Todos os dados pessoais são protegidos por criptografia e utilizamos medidas rigorosas para garantir a segurança de suas informações.</p>
-                                </div>
-                            </div>
-
-                            <div className='faq-item'>
-                                <button className={`faq-item-button ${activeIndex === 11 ? 'active' : ''}`} onClick={() => toggleFAQ(11)}>
                                     Minhas informações de meditação são compartilhadas com terceiros?
                                     <span className='arrow'></span>
                                 </button>
-                                <div className='faq-item-content' style={{ maxHeight: activeIndex === 11 ? '200px' : '0' }}>
-                                    <p>Não. Suas informações de meditação e atividades no aplicativo são privadas e não são compartilhadas com terceiros.</p>
+                                <div className='faq-item-content' style={{ maxHeight: activeIndex === 10 ? '200px' : '0' }}>
+                                    <p>Não. Suas informações de meditação são privadas e não são compartilhadas com terceiros.</p>
                                 </div>
                             </div>
                         </div>
@@ -144,7 +137,7 @@ const FAQ = () => {
                 </Content>
             </Container>
         </main>
-    )
-}
+    );
+};
 
-export default FAQ
+export default FAQ;

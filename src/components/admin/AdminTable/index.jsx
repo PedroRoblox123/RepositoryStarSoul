@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GenericTable from '../GenericTable/index.jsx';
- 
+
 const adminColumns = [
   { label: 'ID', accessor: 'id' },
   { label: 'Cod Admin', accessor: 'codAdmin' },
   { label: 'Nome', accessor: 'nome' },
   { label: 'Email', accessor: 'email' },
   { label: 'Senha', accessor: 'senha' },
-  { label: 'Status', accessor: 'status' },
+  { label: 'Status', accessor: 'codStatus' }, // Use codStatus para o acesso
 ];
- 
+
 function AdminTable() {
   const [admins, setAdmins] = useState([]);
   const [editingAdmin, setEditingAdmin] = useState(null);
@@ -18,7 +18,14 @@ function AdminTable() {
   // Função para buscar administradores
   const fetchAdmins = () => {
     axios.get('http://localhost:8080/administrador')
-      .then(response => setAdmins(response.data))
+      .then(response => {
+        // Mapeia os dados para incluir um status legível
+        const adminsWithStatus = response.data.map(admin => ({
+          ...admin,
+          status: admin.codStatus ? 'Ativo' : 'Inativo', // Definindo status
+        }));
+        setAdmins(adminsWithStatus);
+      })
       .catch(error => console.error('Erro ao buscar administradores:', error));
   };
 
@@ -47,5 +54,5 @@ function AdminTable() {
     />
   );
 }
- 
+
 export default AdminTable;

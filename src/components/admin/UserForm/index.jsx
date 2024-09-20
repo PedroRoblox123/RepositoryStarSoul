@@ -4,17 +4,25 @@ import GenericForm from '../GenericForm/index.jsx';
 const userFields = [
   { name: 'nome', label: 'Nome', type: 'text', placeholder: 'Digite o nome do usuário' },
   { name: 'email', label: 'Email', type: 'email', placeholder: 'Digite o email do usuário' },
-  { name: 'senha', label: 'Senha', type: 'password', placeholder: 'Digite a senha' }
+  { name: 'senha', label: 'Senha', type: 'password', placeholder: 'Digite a senha' },
+  { name: 'codStatus', label: 'Status', type: 'select', options: ['Ativo', 'Inativo'] },
 ];
 
 function UserForm({ onAddUser, onUpdateUser, editingUser }) {
   const handleSubmit = (userData) => {
+    // Mapear as opções "Ativo" e "Inativo" para booleanos true/false
+    const formattedUserData = {
+      ...userData,
+      codStatus: userData.codStatus === 'Ativo' ? true : false, // "Ativo" -> true, "Inativo" -> false
+    };
+  
     if (editingUser) {
-      onUpdateUser(userData);
+      onUpdateUser(formattedUserData);
     } else {
-      onAddUser(userData);
+      onAddUser(formattedUserData);
     }
   };
+  
 
   return (
     <GenericForm

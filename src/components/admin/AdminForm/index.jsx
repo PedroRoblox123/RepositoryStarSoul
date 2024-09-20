@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import GenericForm from '../GenericForm/index.jsx';
 
 const adminFields = [
@@ -6,15 +6,21 @@ const adminFields = [
   { name: 'nome', label: 'Nome', type: 'text', placeholder: 'Digite o nome do administrador' },
   { name: 'email', label: 'Email', type: 'email', placeholder: 'Digite o email' },
   { name: 'senha', label: 'Senha', type: 'password', placeholder: 'Digite a senha' },
-  { name: 'status', label: 'Status', type: 'select', options: ['Ativo', 'Inativo'] },
+  { name: 'codStatus', label: 'Status', type: 'select', options: ['Ativo', 'Inativo'] },
 ];
 
 function AdminForm({ onAddAdmin, onUpdateAdmin, editingAdmin }) {
   const handleSubmit = (adminData) => {
+    // Mapear as opções "Ativo" e "Inativo" para booleanos true/false
+    const formattedAdminData = {
+      ...adminData,
+      codStatus: adminData.codStatus === 'Ativo' ? true : false, // "Ativo" -> true, "Inativo" -> false
+    };
+    
     if (editingAdmin) {
-      onUpdateAdmin(adminData);
+      onUpdateAdmin(formattedAdminData);
     } else {
-      onAddAdmin(adminData);
+      onAddAdmin(formattedAdminData);
     }
   };
 
