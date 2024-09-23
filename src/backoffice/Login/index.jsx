@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 const admins = [
   {
     codAdmin: '115611',
-    email: 'starsoul@gmail.com',
-    senha: 'starsoul'
+    email: 'pedrinho123@gmail.com',
+    senha: '123456'
   }
 ];
 
