@@ -129,3 +129,33 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
   }
+
+
+  .popup-confirm-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: white;
+    padding: 20px;
+    width: 350px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    position: relative;
+    z-index: 1001;  
+  }
+
+  .buttons-confirm,
+  .buttons-cancel {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background-color: #32884f;
+    color: white;
+    box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.3);
+    padding: 8px 15px;
+    font-size: 1rem;
+  } 
+  
+  .buttons-cancel {
+    background-color: #c43939;
+  }

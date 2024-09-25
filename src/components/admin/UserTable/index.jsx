@@ -1,56 +1,109 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GenericTable from '../GenericTable/index.jsx';
+import UserForm from '../UserForm/index.jsx';
 
 const userColumns = [
   { label: 'ID', accessor: 'id' },
   { label: 'Nome', accessor: 'nome' },
   { label: 'Email', accessor: 'email' },
   { label: 'Senha', accessor: 'senha' },
-  { label: 'Status', accessor: 'codStatus' },
+  { label: 'Status', accessor: 'codStatus', render: user => (user.codStatus ? 'Ativo' : 'Inativo') },
 ];
 
 function UserTable() {
   const [users, setUsers] = useState([]);
   const [editingUser, setEditingUser] = useState(null);
+  const [popupVisible, setPopupVisible] = useState(false);
+  const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
+  const [userToDelete, setUserToDelete] = useState(null);
 
-  // Função para buscar usuários
   const fetchUsers = () => {
     axios.get('http://localhost:8080/usuario')
       .then(response => {
-        // Mapeia os dados para incluir um status padrão
-        const usersWithStatus = response.data.map(user => ({
-          ...user,
-          status: user.codStatus ? 'Ativo' : 'Inativo', // Definindo status
-        }));
-        setUsers(usersWithStatus);
+        setUsers(response.data);
       })
       .catch(error => console.error('Erro ao buscar usuários:', error));
   };
 
   useEffect(() => {
     fetchUsers();
+    const intervalId = setInterval(() => {
+      fetchUsers();
+    }, 5000);
+    return () => clearInterval(intervalId);
   }, []);
 
-  // Função para deletar um usuário
   const handleDeleteUser = (userId) => {
     axios.delete(`http://localhost:8080/usuario/${userId}`)
-      .then(() => fetchUsers()) // Recarrega os dados após exclusão
+      .then(() => {
+        fetchUsers();
+        setConfirmDeleteVisible(false); // Fecha o popup de confirmação
+      })
       .catch(error => console.error('Erro ao excluir usuário:', error));
   };
 
-  // Função para editar um usuário
   const handleEditClick = (user) => {
-    setEditingUser(user); // Aqui você pode abrir um modal ou formulário para editar
+    setEditingUser(user);
+    setPopupVisible(true);
+  };
+
+  const handleUpdateUser = (updatedUser) => {
+    setUsers(users.map(user => (user.id === updatedUser.id ? { ...user, ...updatedUser } : user)));
+    setEditingUser(null);
+    setPopupVisible(false);
+  };
+
+  const handleClosePopup = () => {
+    setPopupVisible(false);
+    setEditingUser(null);
+  };
+
+  const handleOpenConfirmDelete = (userId) => {
+    setUserToDelete(userId);
+    setConfirmDeleteVisible(true);
+  };
+
+  const handleCloseConfirmDelete = () => {
+    setConfirmDeleteVisible(false);
+    setUserToDelete(null);
   };
 
   return (
-    <GenericTable
-      data={users}
-      columns={userColumns}
-      onDelete={handleDeleteUser}
-      onEditClick={handleEditClick}
-    />
+    <>
+      <GenericTable
+        data={users}
+        columns={userColumns}
+        onDelete={handleOpenConfirmDelete}
+        onEditClick={handleEditClick}
+      />
+
+      {popupVisible && (
+        <div className="popup">
+          <div className="popup-content">
+            <button className="popup-close-button" onClick={handleClosePopup}>X</button>
+            <UserForm
+              onAddUser={fetchUsers}
+              onUpdateUser={handleUpdateUser}
+              editingUser={editingUser}
+            />
+          </div>
+          <div className="popup-overlay" onClick={handleClosePopup}></div>
+        </div>
+      )}
+
+      {confirmDeleteVisible && (
+        <div className="popup">
+          <div className="popup-confirm-content">
+            <p>Tem certeza que deseja excluir este usuário?</p>
+            
+            <button className='buttons-confirm' onClick={() => handleDeleteUser(userToDelete)}>Confirmar</button>
+            <button className='buttons-cancel' onClick={handleCloseConfirmDelete}>Cancelar</button>
+          </div>
+          <div className="popup-overlay" onClick={handleCloseConfirmDelete}></div>
+        </div>
+      )}
+    </>
   );
 }
 

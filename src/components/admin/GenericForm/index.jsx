@@ -8,49 +8,53 @@ function GenericForm({ fields, onSubmit, editingData, apiUrl, method }) {
   useEffect(() => {
     const initialData = {};
     fields.forEach(field => {
-      initialData[field.name] = field.type === 'select' && field.options ? field.options[0] : '';
+      initialData[field.name] = editingData ? editingData[field.name] : (field.type === 'select' ? field.options[0] : '');
     });
-    setFormData(editingData || initialData);
-
-    // Testando a conexão com a API
-    axios.get('http://localhost:8080/usuario')
-      .then(response => console.log('Conexão com API bem-sucedida:', response))
-      .catch(error => console.error('Erro ao conectar com API:', error));
+    setFormData(initialData);
   }, [editingData, fields]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Enviando dados:", formData); // Log dos dados enviados
+    // Validações adicionais
+    if (formData.senha.length < 8) {
+        alert('A senha deve ter pelo menos 8 caracteres!');
+        return;
+    }
+
+    if (formData.nome.length < 3) {
+        alert('O nome deve ter pelo menos 3 caracteres!');
+        return;
+    }
 
     try {
-      let response;
-      if (method === 'POST') {
-        response = await axios.post(apiUrl, formData);
-      } else if (method === 'PUT') {
-        response = await axios.put(apiUrl, formData);
-      }
+        let response;
+        if (method === 'POST') {
+            response = await axios.post(apiUrl, formData);
+        } else if (method === 'PUT') {
+            response = await axios.put(apiUrl, formData);
+        }
 
-      console.log('Resposta da API:', response);
-      alert('Dados enviados com sucesso');
-      setFormData(fields.reduce((acc, field) => {
-        acc[field.name] = '';
-        return acc;
-      }, {}));
-      if (onSubmit) onSubmit(formData);
+        alert('Dados enviados com sucesso');
+        setFormData(fields.reduce((acc, field) => {
+            acc[field.name] = '';
+            return acc;
+        }, {}));
+        if (onSubmit) onSubmit(response.data);
     } catch (error) {
-      console.error('Erro ao enviar dados:', error);
-      alert('Erro ao enviar dados: ' + (error.response?.data?.message || error.message));
+        alert('Erro ao enviar dados: ' + (error.response?.data?.message || error.message));
     }
-  };
+};
+
+
 
   return (
     <form className='generic-form' onSubmit={handleSubmit}>
@@ -59,7 +63,13 @@ function GenericForm({ fields, onSubmit, editingData, apiUrl, method }) {
           <label className='generic-label'>
             {field.label}:
             {field.type === 'select' ? (
-              <select className={`generic-input ${field.disabled ? 'disabled-field' : ''}`} name={field.name} value={formData[field.name] || ''} onChange={handleChange} required disabled={field.disabled}>
+              <select
+                className='generic-input'
+                name={field.name}
+                value={formData[field.name] || ''}
+                onChange={handleChange}
+                required
+              >
                 {field.options.map(option => (
                   <option key={option} value={option}>
                     {option}
@@ -67,13 +77,21 @@ function GenericForm({ fields, onSubmit, editingData, apiUrl, method }) {
                 ))}
               </select>
             ) : (
-              <input className={`generic-input ${field.disabled ? 'disabled-field' : ''}`} type={field.type} name={field.name} value={formData[field.name] || ''} onChange={handleChange} placeholder={field.placeholder} required disabled={field.disabled} />
+              <input
+                className='generic-input'
+                type={field.type}
+                name={field.name}
+                value={formData[field.name] || ''}
+                onChange={handleChange}
+                placeholder={field.placeholder}
+                required
+              />
             )}
           </label>
         </div>
       ))}
       <button className='generic-button' type="submit">
-        {editingData ? 'Atualizar' : 'Cadastrar'}
+        {editingData ? 'Salvar' : ''}
       </button>
     </form>
   );
