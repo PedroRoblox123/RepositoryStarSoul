@@ -35,6 +35,12 @@ function GenericForm({ fields, onSubmit, editingData, apiUrl, method }) {
         return;
     }
 
+    const isValidName = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(formData.nome);
+    if (!isValidName) {
+        alert('O nome deve conter apenas letras!');
+        return;
+    }
+
     try {
         let response;
         if (method === 'POST') {
