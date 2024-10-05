@@ -5,40 +5,26 @@ const userFields = [
   { name: 'nome', label: 'Nome', type: 'text', placeholder: 'Digite o nome do usuário' },
   { name: 'email', label: 'Email', type: 'email', placeholder: 'Digite o email do usuário' },
   { name: 'senha', label: 'Senha', type: 'password', placeholder: 'Digite a senha' },
-  { name: 'codStatus', label: 'Status', type: 'select', options: ['True', 'False'] },
+  { name: 'codStatus', label: 'Status', type: 'select', options: ['Ativo', 'Inativo'] },
 ];
 
 function UserForm({ onAddUser, onUpdateUser, editingUser }) {
-  const [formData, setFormData] = useState({});
+  // Usamos um estado apenas para controlar se estamos editando
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     if (editingUser) {
-      setFormData({
-        nome: editingUser.nome,
-        email: editingUser.email,
-        senha: editingUser.senha,
-        codStatus: editingUser.codStatus ? 'True' : 'False',
-      });
+      setIsEditing(true);
     } else {
-      setFormData({
-        nome: '',
-        email: '',
-        senha: '',
-        codStatus: 'True', // Valor padrão
-      });
+      setIsEditing(false);
     }
   }, [editingUser]);
 
-  const handleSubmit = () => {
-    const formattedUserData = {
-      ...formData,
-      codStatus: formData.codStatus === 'True', // Converte para booleano
-    };
-
-    if (editingUser) {
-      onUpdateUser({ ...formattedUserData, id: editingUser.id });
+  const handleSubmit = (data) => {
+    if (isEditing) {
+      onUpdateUser({ ...data, id: editingUser.id });
     } else {
-      onAddUser(formattedUserData);
+      onAddUser(data);
     }
   };
 
@@ -46,9 +32,10 @@ function UserForm({ onAddUser, onUpdateUser, editingUser }) {
     <GenericForm
       fields={userFields}
       onSubmit={handleSubmit}
-      editingData={formData}
-      apiUrl={editingUser ? `http://localhost:8080/usuario/${editingUser.id}` : 'http://localhost:8080/usuario'}
+      editingData={editingUser}
+      apiUrl={editingUser ? `http://localhost:8080/api/users/${editingUser.id}` : 'http://localhost:8080/api/users'}
       method={editingUser ? 'PUT' : 'POST'}
+      // Removemos a função onChange, pois o GenericForm cuida disso
     />
   );
 }

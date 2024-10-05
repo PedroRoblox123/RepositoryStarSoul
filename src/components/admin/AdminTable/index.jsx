@@ -9,7 +9,11 @@ const adminColumns = [
   { label: 'Nome', accessor: 'nome' },
   { label: 'Email', accessor: 'email' },
   { label: 'Senha', accessor: 'senha' },
-  { label: 'Status', accessor: 'codStatus', render: admin => (admin.codStatus ? 'Ativo' : 'Inativo') },
+  { 
+    label: 'Status', 
+    accessor: 'codStatus', 
+    render: user => user.codStatus === 'Ativo' ? 'Ativo' : 'Inativo' 
+  },
 ];
 
 function AdminTable() {
@@ -20,7 +24,7 @@ function AdminTable() {
   const [adminToDelete, setAdminToDelete] = useState(null);
 
   const fetchAdmins = () => {
-    axios.get('http://localhost:8080/administrador')
+    axios.get('http://localhost:8080/api/admins')
       .then(response => {
         setAdmins(response.data);
       })
@@ -36,7 +40,7 @@ function AdminTable() {
   }, []);
 
   const handleDeleteAdmin = (adminId) => {
-    axios.delete(`http://localhost:8080/administrador/${adminId}`)
+    axios.delete(`http://localhost:8080/api/admins/${adminId}`)
       .then(() => {
         fetchAdmins();
         setConfirmDeleteVisible(false); // Fecha o popup de confirmação

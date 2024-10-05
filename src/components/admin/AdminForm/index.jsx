@@ -2,46 +2,30 @@ import React, { useEffect, useState } from 'react';
 import GenericForm from '../GenericForm/index.jsx';
 
 const adminFields = [
-  { name: 'codAdmin', label: 'Código Admin', type: 'text', placeholder: 'Digite o código do admin', disabled: false },
-  { name: 'nome', label: 'Nome', type: 'text', placeholder: 'Digite o nome do administrador' },
-  { name: 'email', label: 'Email', type: 'email', placeholder: 'Digite o email' },
+  { name: 'codAdmin', label: 'Código Admin', type: 'text', placeholder: 'Digite o código do admin'},
+  { name: 'nome', label: 'Nome', type: 'text', placeholder: 'Digite o nome do usuário' },
+  { name: 'email', label: 'Email', type: 'email', placeholder: 'Digite o email do usuário' },
   { name: 'senha', label: 'Senha', type: 'password', placeholder: 'Digite a senha' },
-  { name: 'codStatus', label: 'Status', type: 'select', options: ['True', 'False'] },
+  { name: 'codStatus', label: 'Status', type: 'select', options: ['Ativo', 'Inativo'] },
 ];
 
 function AdminForm({ onAddAdmin, onUpdateAdmin, editingAdmin }) {
-  const [formData, setFormData] = useState({});
+  // Usamos um estado apenas para controlar se estamos editando
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     if (editingAdmin) {
-      setFormData({
-        codAdmin: editingAdmin.codAdmin,
-        nome: editingAdmin.nome,
-        email: editingAdmin.email,
-        senha: editingAdmin.senha,
-        codStatus: editingAdmin.codStatus ? 'True' : 'False',
-      });
+      setIsEditing(true);
     } else {
-      setFormData({
-        codAdmin: '',
-        nome: '',
-        email: '',
-        senha: '',
-        codStatus: 'True', // Valor padrão ao cadastrar
-      });
+      setIsEditing(false);
     }
   }, [editingAdmin]);
 
-  const handleSubmit = (adminData) => {
-    const formattedAdminData = {
-      ...adminData,
-      codStatus: adminData.codStatus === 'True', // Converte para booleano
-    };
-
-    if (editingAdmin) {
-      onUpdateAdmin({ ...formattedAdminData, id: editingAdmin.id });
+  const handleSubmit = (data) => {
+    if (isEditing) {
+      onUpdateAdmin({ ...data, id: editingAdmin.id });
     } else {
-      onAddAdmin(formattedAdminData);
+      onAddAdmin(data);
     }
   };
 
@@ -49,9 +33,10 @@ function AdminForm({ onAddAdmin, onUpdateAdmin, editingAdmin }) {
     <GenericForm
       fields={adminFields}
       onSubmit={handleSubmit}
-      editingData={formData}
-      apiUrl={editingAdmin ? `http://localhost:8080/administrador/${editingAdmin.id}` : 'http://localhost:8080/administrador'}
+      editingData={editingAdmin}
+      apiUrl={editingAdmin ? `http://localhost:8080/api/admins/${editingAdmin.id}` : 'http://localhost:8080/api/admins'}
       method={editingAdmin ? 'PUT' : 'POST'}
+      // Removemos a função onChange, pois o GenericForm cuida disso
     />
   );
 }

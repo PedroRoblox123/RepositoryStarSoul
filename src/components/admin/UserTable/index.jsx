@@ -8,7 +8,11 @@ const userColumns = [
   { label: 'Nome', accessor: 'nome' },
   { label: 'Email', accessor: 'email' },
   { label: 'Senha', accessor: 'senha' },
-  { label: 'Status', accessor: 'codStatus', render: user => (user.codStatus ? 'Ativo' : 'Inativo') },
+  { 
+    label: 'Status', 
+    accessor: 'codStatus', 
+    render: user => user.codStatus === 'Ativo' ? 'Ativo' : 'Inativo' 
+  },
 ];
 
 function UserTable() {
@@ -19,7 +23,7 @@ function UserTable() {
   const [userToDelete, setUserToDelete] = useState(null);
 
   const fetchUsers = () => {
-    axios.get('http://localhost:8080/usuario')
+    axios.get('http://localhost:8080/api/users')
       .then(response => {
         setUsers(response.data);
       })
@@ -35,7 +39,7 @@ function UserTable() {
   }, []);
 
   const handleDeleteUser = (userId) => {
-    axios.delete(`http://localhost:8080/usuario/${userId}`)
+    axios.delete(`http://localhost:8080/api/users/${userId}`)
       .then(() => {
         fetchUsers();
         setConfirmDeleteVisible(false); // Fecha o popup de confirmação
@@ -56,7 +60,7 @@ function UserTable() {
 
   const handleClosePopup = () => {
     setPopupVisible(false);
-    setEditingUser(null);
+    setEditingUser(null); // Limpa o usuário em edição
   };
 
   const handleOpenConfirmDelete = (userId) => {
@@ -96,7 +100,6 @@ function UserTable() {
         <div className="popup">
           <div className="popup-confirm-content">
             <p>Tem certeza que deseja excluir este usuário?</p>
-            
             <button className='buttons-confirm' onClick={() => handleDeleteUser(userToDelete)}>Confirmar</button>
             <button className='buttons-cancel' onClick={handleCloseConfirmDelete}>Cancelar</button>
           </div>

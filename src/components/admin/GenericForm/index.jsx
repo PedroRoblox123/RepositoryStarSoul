@@ -24,43 +24,45 @@ function GenericForm({ fields, onSubmit, editingData, apiUrl, method }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validações adicionais
+    // Validações
     if (formData.senha.length < 8) {
-        alert('A senha deve ter pelo menos 8 caracteres!');
-        return;
+      alert('A senha deve ter pelo menos 8 caracteres!');
+      return;
     }
 
     if (formData.nome.length < 3) {
-        alert('O nome deve ter pelo menos 3 caracteres!');
-        return;
+      alert('O nome deve ter pelo menos 3 caracteres!');
+      return;
     }
 
     const isValidName = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(formData.nome);
     if (!isValidName) {
-        alert('O nome deve conter apenas letras!');
-        return;
+      alert('O nome deve conter apenas letras!');
+      return;
     }
 
     try {
-        let response;
-        if (method === 'POST') {
-            response = await axios.post(apiUrl, formData);
-        } else if (method === 'PUT') {
-            response = await axios.put(apiUrl, formData);
-        }
+      let response;
+      if (method === 'POST') {
+        response = await axios.post(apiUrl, formData);
+      } else if (method === 'PUT') {
+        response = await axios.put(apiUrl, formData);
+      }
 
-        alert('Dados enviados com sucesso');
-        setFormData(fields.reduce((acc, field) => {
-            acc[field.name] = '';
-            return acc;
-        }, {}));
-        if (onSubmit) onSubmit(response.data);
+      alert('Dados enviados com sucesso');
+      
+      // Limpa o formulário após o envio
+      const initialData = {};
+      fields.forEach(field => {
+        initialData[field.name] = field.type === 'select' ? field.options[0] : '';
+      });
+      setFormData(initialData); // Reseta os dados do formulário
+      
+      if (onSubmit) onSubmit(response.data);
     } catch (error) {
-        alert('Erro ao enviar dados: ' + (error.response?.data?.message || error.message));
+      alert('Erro ao enviar dados: ' + (error.response?.data?.message || error.message));
     }
-};
-
-
+  };
 
   return (
     <form className='generic-form' onSubmit={handleSubmit}>
@@ -97,7 +99,7 @@ function GenericForm({ fields, onSubmit, editingData, apiUrl, method }) {
         </div>
       ))}
       <button className='generic-button' type="submit">
-        {editingData ? 'Salvar' : ''}
+        {editingData ? 'Salvar' : 'Adicionar'}
       </button>
     </form>
   );
